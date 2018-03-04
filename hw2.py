@@ -31,7 +31,7 @@ def _stem_each_porter(text):
 
 
 def _mystem(text):
-    return ''.join(MYSTEM_INSTANCE.lemmatize(text))
+    return ''.join(MYSTEM_INSTANCE.lemmatize(text)).strip()
 
 
 def main():
@@ -46,9 +46,10 @@ def main():
                                                      "not(preceding-sibling::b[contains(text(), 'Ключевые')])]"))
         keywords = re.split(", ", article_page.xpath("//b[contains(text(), 'Ключевые')]/following-sibling::i")[0].text)
 
+        annotation = annotation.strip()
         result[link.text] = [
             {'stemmedTitle:': [{'porter': _stem_each_porter(link.text)}, {'mystem': _mystem(link.text)}]},
-            {'link': link.get("href")},
+            {'link': URL_BASE + link.get("href")},
             {'annotation': [{'original': annotation}, {'porter': _stem_each_porter(annotation)},
                             {'mystem': _mystem(annotation)}]}, {'keywords': keywords}]
 
