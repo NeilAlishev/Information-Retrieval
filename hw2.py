@@ -31,7 +31,7 @@ def _stem_each_porter(text):
 
 
 def _mystem(text):
-    return ''.join(MYSTEM_INSTANCE.lemmatize(text)).strip()
+    return re.sub('[^\w ]+', '', ''.join(MYSTEM_INSTANCE.lemmatize(text)).strip())
 
 
 def main():
@@ -48,7 +48,7 @@ def main():
 
         annotation = annotation.strip()
         result[link.text] = [
-            {'stemmedTitle:': [{'porter': _stem_each_porter(link.text)}, {'mystem': _mystem(link.text)}]},
+            {'stemmedTitle': [{'porter': _stem_each_porter(link.text)}, {'mystem': _mystem(link.text)}]},
             {'link': URL_BASE + link.get("href")},
             {'annotation': [{'original': annotation}, {'porter': _stem_each_porter(annotation)},
                             {'mystem': _mystem(annotation)}]}, {'keywords': keywords}]
