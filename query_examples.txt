@@ -1,0 +1,17 @@
+Query: и для
+Output: {2, 3, 4, 5, 6, 9, 10}
+
+Query: и -для
+Output: {1, 8}
+
+Query: 123 +фыва
+Output: Query is malformed
+
+Query: мама мыла раму
+Output: set()
+
+Query: дифференциальная задача
+Output: {9, 7}
+
+Query: исследовать переменную погрешность
+Output: {3}
