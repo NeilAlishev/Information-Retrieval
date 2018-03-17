@@ -36,4 +36,5 @@ def main():
     print(get_intersect(idx, q))
 
 
-main()
+if __name__ == "__main__":
+    main()
