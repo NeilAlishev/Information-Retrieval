@@ -8,8 +8,13 @@ MYSTEM_INSTANCE = Mystem()
 
 def get_intersect(idx, q):
     terms = re.split(" ", q)
+
     # stem query terms
-    terms = [MYSTEM_INSTANCE.lemmatize(term)[0].strip() for term in terms]
+    for i in range(len(terms)):
+        if terms[i].startswith("-"):
+            terms[i] = "-" + MYSTEM_INSTANCE.lemmatize(terms[i][1:])[0].strip()
+        else:
+            terms[i] = MYSTEM_INSTANCE.lemmatize(terms[i])[0].strip()
 
     doc_set = set(range(1, DOC_COLLECTION_SIZE + 1))
 
