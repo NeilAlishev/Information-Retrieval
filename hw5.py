@@ -99,7 +99,7 @@ def do_ranking(score_result):
 
 
 def write_to_file(result, query):
-    with open("output7", 'a') as out:
+    with open("output_lsa_3", 'a') as out:
         out.write("USER ENTERED: " + query + "\n")
 
         if isinstance(result, list):
@@ -145,4 +145,5 @@ def main():
     write_to_file(do_ranking(score_result), q)
 
 
-main()
+if __name__ == "__main__":
+    main()
